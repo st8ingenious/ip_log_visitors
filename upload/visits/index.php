@@ -47,6 +47,9 @@ border:1px solid black;
 <body class="wo">
 <h1>Visits log</h1>
 <?php
+$link=Conection();
+   $Sql="insert into visits (data,time,ipcl) values ('Logged-in-Visits_log_view_page','".date("Y-m-d H:i:s")."','$ipaddress')";     
+   mysql_query($Sql,$link);
 #Clear log with "http:// . . . /index.php?erase=true"
 if (isset($_GET["erase"]) && ($_GET["erase"]=="true"))
 	{
