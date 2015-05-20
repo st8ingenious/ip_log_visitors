@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `visits` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `data` varchar(100) NOT NULL,
+  `time` varchar(100) NOT NULL,
+  `ipcl` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
