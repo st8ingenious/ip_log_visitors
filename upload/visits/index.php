@@ -49,7 +49,7 @@ border:1px solid black;
 <script type="text/javascript" src="tableExport.js"></script>
 <script type="text/javascript" src="jquery.base64.js"></script>
 
-<h1>Visits log</h1>
+<h1 id="logo"><a href="./index.php" style="text-decoration:none" ]>Visits log</a></h1>
 <?php
 $link=Conection();
    $Sql="insert into visits (data,time,ipcl) values ('Logged-in-Visits_log_view_page','".date("Y-m-d H:i:s")."','$ipaddress')";     
@@ -77,10 +77,12 @@ else{
 <a href="index.php?erase=true">! ! CLEAR LOG ! !</a>
 </br>
 </br>
-<a href="index.php?resolve=true">Resolve IP addresses</a>
-</br>(last 1000 visits)
 </br>
-</br>
+<form action="./index.php" method="get">
+<input type="submit" value="Resolve IP addresses"></br>
+of the last <input type="text" value="1000" name="visits" size=3 > visits<br>
+<input type="hidden" name="resolve" value="true" />
+</form>
 <input value="Export as xls" type="button" onclick="$('#exttable').tableExport({type:'excel', escape:'false'})">
 </br>
 </br>
@@ -97,13 +99,15 @@ else{
 <td>Date-time</td>
 <td>Visitors IP</td>
 </tr>";
+
 $apireq=0;
+$maxt=$_GET["visits"];
 
 while($row = mysql_fetch_array($result))
   {
 	  $ip= $row["ipcl"];
 	  if (isset($_GET["resolve"]) && ($_GET["resolve"]=="true")){
-	  if ($apireq<1000){
+	  if ($apireq<$maxt){
 	 $apireq=$apireq+1;
 	 
 	  
